@@ -25,7 +25,7 @@ namespace GradeBook.UserInterfaces
         LoadCommand(command);
       else if (command == "help")
         HelpCommand();
-      else if (command == "quit")
+      else if (command == "quit" || command == "exit")
         Quit = true;
       else
         Console.WriteLine("{0} was not recognized, please try again.", command);
@@ -39,7 +39,7 @@ namespace GradeBook.UserInterfaces
         Console.WriteLine(" Command not valid, Create requires a name, type of gradebook, if it's weighted (true / false). ");
         return;
       }
-
+            
       string name = parts[1];
       string type = parts[2];
 
@@ -50,11 +50,11 @@ namespace GradeBook.UserInterfaces
       BaseGradeBook gradeBook; // = new BaseGradeBook(name);
       if (type == "standard")
         gradeBook = new StandardGradeBook(name, IsWeighted);
-      if (type == "ranked")
+      else if (type == "ranked")
         gradeBook = new RankedGradeBook(name, IsWeighted);
       else
       {
-        Console.WriteLine(" {0} is not a supported type of gradebook, please try again ", type);
+        Console.WriteLine("{0} is not a supported type of gradebook, please try again ", type);
         return;
       }
 
