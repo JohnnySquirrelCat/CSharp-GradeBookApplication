@@ -34,13 +34,27 @@ namespace GradeBook.UserInterfaces
     public static void CreateCommand(string command)
     {
       var parts = command.Split(' ');
-      if (parts.Length != 2)
+      if (parts.Length != 3)
       {
-        Console.WriteLine("Command not valid, Create requires a name.");
+        Console.WriteLine(" Command not valid, Create requires a name and type of gradebook. ");
         return;
       }
-      var name = parts[1];
-      BaseGradeBook gradeBook = new BaseGradeBook(name);
+
+      string name = parts[1];
+      string type = parts[2];
+
+
+      BaseGradeBook gradeBook; // = new BaseGradeBook(name);
+      if (type == "standard")
+        gradeBook = new StandardGradeBook(name);
+      if (type == "ranked")
+        gradeBook = new RankedGradeBook(name);
+      else
+      {
+        Console.WriteLine(" {0} is not a supported type of gradebook, please try again ", type);
+        return;
+      }
+
       Console.WriteLine("Created gradebook {0}.", name);
       GradeBookUserInterface.CommandLoop(gradeBook);
     }
@@ -64,16 +78,16 @@ namespace GradeBook.UserInterfaces
 
     public static void HelpCommand()
     {
-      Console.WriteLine();
-      Console.WriteLine("GradeBook accepts the following commands:");
-      Console.WriteLine();
-      Console.WriteLine("Create 'Name' - Creates a new gradebook where 'Name' is the name of the gradebook.");
-      Console.WriteLine();
-      Console.WriteLine("Load 'Name' - Loads the gradebook with the provided 'Name'.");
-      Console.WriteLine();
-      Console.WriteLine("Help - Displays all accepted commands.");
-      Console.WriteLine();
-      Console.WriteLine("Quit - Exits the application");
+      //Console.WriteLine();
+      Console.WriteLine("\n GradeBook accepts the following commands: \n");
+      //Console.WriteLine();
+      Console.WriteLine(" Create 'Name' 'Type' - Creates a new gradebook where 'Name' is the name of the gradebook and 'Type' is what type of grading it should use. \n");
+      //Console.WriteLine();
+      Console.WriteLine(" Load 'Name' - Loads the gradebook with the provided 'Name'. \n");
+      //Console.WriteLine();
+      Console.WriteLine(" Help - Displays all accepted commands. \n");
+      //Console.WriteLine();
+      Console.WriteLine(" Quit - Exits the application \n");
     }
   }
 }
