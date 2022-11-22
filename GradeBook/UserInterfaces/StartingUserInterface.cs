@@ -1,5 +1,8 @@
 ﻿using GradeBook.GradeBooks;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GradeBook.UserInterfaces
 {
@@ -23,6 +26,10 @@ namespace GradeBook.UserInterfaces
         CreateCommand(command);
       else if (command.StartsWith("load"))
         LoadCommand(command);
+      else if (command.StartsWith("delete"))
+        DeleteCommand(command);
+      else if (command.StartsWith("list"))
+        ListCommand();
       else if (command == "help")
         HelpCommand();
       else if (command == "quit" || command == "exit")
@@ -43,22 +50,35 @@ namespace GradeBook.UserInterfaces
       string name = parts[1];
       string type = parts[2];
 
-      bool IsWeighted = false;
+      bool isWeighted = false;
       if (parts[3] == "true")
-        IsWeighted = true;
+        isWeighted = true;
 
       BaseGradeBook gradeBook; // = new BaseGradeBook(name);
-      if (type == "standard")
-        gradeBook = new StandardGradeBook(name, IsWeighted);
-      else if (type == "ranked")
-        gradeBook = new RankedGradeBook(name, IsWeighted);
-      else
+      switch (type)
       {
-        Console.WriteLine("{0} is not a supported type of gradebook, please try again ", type);
-        return;
+        case "standard":
+          gradeBook = new StandardGradeBook(name, isWeighted);
+          break;
+        case "ranked":
+          gradeBook = new RankedGradeBook(name, isWeighted);
+          break;
+        default:
+          Console.WriteLine("{0} is not a supported type of gradebook, please try again ", type);
+          return;          
       }
 
-      Console.WriteLine("Created gradebook {0}.", name);
+      //if (type == "standard")
+      //  gradeBook = new StandardGradeBook(name, isWeighted);
+      //else if (type == "ranked")
+      //  gradeBook = new RankedGradeBook(name, isWeighted);
+      //else
+      //{
+      //  Console.WriteLine("{0} is not a supported type of gradebook, please try again ", type);
+      //  return;
+      //}
+
+      Console.WriteLine("\nCreated gradebook {0}.", name);
       GradeBookUserInterface.CommandLoop(gradeBook);
     }
 
@@ -79,6 +99,69 @@ namespace GradeBook.UserInterfaces
       GradeBookUserInterface.CommandLoop(gradeBook);
     }
 
+    public static void DeleteCommand(string command)
+    {
+      var parts = command.Split(' ');
+
+      if (parts.Length != 2)
+      {
+        Console.WriteLine("Command not valid, Delete requires a name.");
+        return;       
+      }
+
+      string name = parts[1];
+
+      if (!File.Exists(name + ".gdbk"))
+      {
+        Console.WriteLine(name + " Gradebook coudl not be found \n");
+        return;
+      }
+      else
+      {
+        File.Delete(name + ".gdbk");
+        Console.WriteLine(name + " Gradebook has been deleted \n");
+        return;
+      }
+      
+
+    }
+
+    public static void ListCommand()
+    {
+      //string path = (Directory.Exists(@"C:\")) ? @"C:\" : @"C:\";
+      string USERNAME = Environment.UserName;
+      string savedGBPath = @"C:\Users" + USERNAME + "\\GitHib\\CSharp-GradeBookApplication\\GradeBook\\bin\\Debug\\netcoreapp2.0";
+
+      //if (File.Exists(savedGBPath))
+      {
+        List<string> lstPathsWFiles = new List<string>(Directory.GetFiles(@"C:\Users\JClark\Documents\GitHub\CSharp-GradeBookApplication\GradeBook\bin\Debug\netcoreapp2.0"));
+        List<string> lstFiles = new List<string>();
+        List<string> lstGradeBooks = new List<string>();
+
+        // trying to see if I can check whether or not if the user has saved any grade books yet 
+        //if (lstPathsWFiles.Where(x => x.EndsWith(".gdbk")))
+        {
+          lstGradeBooks = lstPathsWFiles.Where(x => x.EndsWith(".gdbk")).ToList();
+
+          foreach (string lst in lstGradeBooks)
+          {
+            lstFiles = lst.Split('\\').ToList();
+            foreach (string file in lstFiles)
+            {
+              if (file.EndsWith(".gdbk"))
+              {
+                Console.WriteLine(file);
+              }
+            }
+          }
+        }
+      }
+      //else
+      //{
+      //  Console.WriteLine("\n SAVE PATH NOT FOUND \n");
+      //}
+    }
+
     public static void HelpCommand()
     {
       //Console.WriteLine();
@@ -87,6 +170,10 @@ namespace GradeBook.UserInterfaces
       Console.WriteLine(" Create 'Name' 'Type' 'Weighted' - Creates a new gradebook where 'Name' is the name of the gradebook, 'Type' is what type of grading it should use, and 'Weighted' is whether or not grades should be weighted (true or false). \n");
       //Console.WriteLine();
       Console.WriteLine(" Load 'Name' - Loads the gradebook with the provided 'Name'. \n");
+      //Console.WriteLine();
+      Console.WriteLine(" Delete 'Name' - Deletes the gradebook with the provided 'Name' \n");
+      //Console.WriteLine();
+      Console.WriteLine(" List - Displays all of the grade books that are made. \n");
       //Console.WriteLine();
       Console.WriteLine(" Help - Displays all accepted commands. \n");
       //Console.WriteLine();

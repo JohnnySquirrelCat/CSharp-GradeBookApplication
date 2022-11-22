@@ -48,7 +48,7 @@ namespace GradeBook.UserInterfaces
         StudentStatisticsCommand(command);
       else if (command == "help")
         HelpCommand();
-      else if (command == "close")
+      else if (command == "close" || command == "quit" || command == "exit")
         Quit = true;
       else
         Console.WriteLine("{0} was not recognized, please try again.", command);
@@ -154,37 +154,37 @@ namespace GradeBook.UserInterfaces
 
     public static void HelpCommand()
     {
-      Console.WriteLine();
-      Console.WriteLine("While a gradebook is open you can use the following commands:");
-      Console.WriteLine();
-      Console.WriteLine("Add 'Name' 'Student Type' 'Enrollment Type' - Adds a new student to the gradebook with the provided name, type of student, and type of enrollment.");
-      Console.WriteLine();
-      Console.WriteLine("Accepted Student Types:");
+      //Console.WriteLine();
+      Console.WriteLine("\n While a gradebook is open you can use the following commands: \n");
+      //Console.WriteLine();
+      Console.WriteLine("Add 'Name' 'Student Type' 'Enrollment Type' - Adds a new student to the gradebook with the provided name, type of student, and type of enrollment. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Accepted Student Types: ");
       Console.WriteLine("Standard - Student not enrolled in Honors classes or Dual Enrolled.");
       Console.WriteLine("Honors - Students enrolled in Honors classes and not Dual Enrolled.");
-      Console.WriteLine("DualEnrolled - Students who are Dual Enrolled.");
-      Console.WriteLine();
-      Console.WriteLine("Accepted Enrollment Types:");
+      Console.WriteLine("DualEnrolled - Students who are Dual Enrolled. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Accepted Enrollment Types: ");
       Console.WriteLine("Campus - Students who are in the same district as the school.");
       Console.WriteLine("State - Students whose legal residence is outside the school's district, but is in the same state as the school.");
       Console.WriteLine("National - Students whose legal residence is not in the same state as the school, but is in the same country as the school.");
-      Console.WriteLine("International - Students whose legal residence is not in the same country as the school.");
-      Console.WriteLine();
-      Console.WriteLine("List - Lists all students.");
-      Console.WriteLine();
-      Console.WriteLine("AddGrade 'Name' 'Score' - Adds a new grade to a student with the matching name of the provided score.");
-      Console.WriteLine();
-      Console.WriteLine("RemoveGrade 'Name' 'Score' - Removes a grade from a student with the matching name and score.");
-      Console.WriteLine();
-      Console.WriteLine("Remove 'Name' - Removes the student with the provided name.");
-      Console.WriteLine();
-      Console.WriteLine("Statistics 'Name' - Gets statistics for the specified student.");
-      Console.WriteLine();
-      Console.WriteLine("Statistics All - Gets general statistics for the entire gradebook.");
-      Console.WriteLine();
-      Console.WriteLine("Close - Closes the gradebook and takes you back to the starting command options.");
-      Console.WriteLine();
-      Console.WriteLine("Save - Saves the gradebook to the hard drive for later use.");
+      Console.WriteLine("International - Students whose legal residence is not in the same country as the school. \n");
+      //Console.WriteLine();
+      Console.WriteLine("List - Lists all students. \n");
+      //Console.WriteLine();
+      Console.WriteLine("AddGrade 'Name' 'Score' - Adds a new grade to a student with the matching name of the provided score. \n");
+      //Console.WriteLine();
+      Console.WriteLine("RemoveGrade 'Name' 'Score' - Removes a grade from a student with the matching name and score. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Remove 'Name' - Removes the student with the provided name. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Statistics 'Name' - Gets statistics for the specified student. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Statistics All - Gets general statistics for the entire gradebook. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Close - Closes the gradebook and takes you back to the starting command options. \n");
+      //Console.WriteLine();
+      Console.WriteLine("Save - Saves the gradebook to the hard drive for later use. \n");
     }
   }
 }

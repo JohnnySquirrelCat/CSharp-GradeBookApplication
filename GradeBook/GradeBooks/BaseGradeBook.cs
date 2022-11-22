@@ -96,7 +96,7 @@ namespace GradeBook.GradeBooks
         }
       }
     }
-
+        
     public void Save()
     {
       using (var file = new FileStream(Name + ".gdbk", FileMode.Create, FileAccess.Write))
