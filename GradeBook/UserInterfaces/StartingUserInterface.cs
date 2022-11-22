@@ -129,12 +129,15 @@ namespace GradeBook.UserInterfaces
     public static void ListCommand()
     {
       //string path = (Directory.Exists(@"C:\")) ? @"C:\" : @"C:\";
-      string USERNAME = Environment.UserName;
-      string savedGBPath = @"C:\Users" + USERNAME + "\\GitHib\\CSharp-GradeBookApplication\\GradeBook\\bin\\Debug\\netcoreapp2.0";
-
+      //string USERNAME = Environment.UserName;
+      //string savedGBPath = @"C:\Users\" + USERNAME + "\\GitHib\\CSharp-GradeBookApplication\\GradeBook\\bin\\Debug\\netcoreapp2.0\\";
+               
       //if (File.Exists(savedGBPath))
       {
         List<string> lstPathsWFiles = new List<string>(Directory.GetFiles(@"C:\Users\JClark\Documents\GitHub\CSharp-GradeBookApplication\GradeBook\bin\Debug\netcoreapp2.0"));
+        //List<string> lstPathsWFiles = new List<string>(Directory.GetFiles(@"C:\Users" + USERNAME + "Documents\GitHub\CSharp-GradeBookApplication\GradeBook\bin\Debug\netcoreapp2.0"));
+        //List<string> lstPathsWFiles = new List<string>(savedGBPath);
+
         List<string> lstFiles = new List<string>();
         List<string> lstGradeBooks = new List<string>();
 
