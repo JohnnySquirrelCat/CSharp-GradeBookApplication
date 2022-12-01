@@ -72,7 +72,10 @@ namespace GradeBook.GradeBooks
     }
 
     public void ListStudents()
-    {
+    {      
+      Console.WriteLine();
+      Console.WriteLine("Here is a list of all students in " + GradeBook.UserInterfaces.GradeBookUserInterface.GradeBook.Name + "'s Grade Book. ");
+      Console.WriteLine();
       foreach (var student in Students)
       {
         Console.WriteLine("{0} : {1} : {2}", student.Name, student.Type, student.Enrollment);

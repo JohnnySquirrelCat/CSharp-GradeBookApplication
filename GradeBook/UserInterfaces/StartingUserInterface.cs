@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.OleDb;
 
 namespace GradeBook.UserInterfaces
 {
@@ -128,18 +129,18 @@ namespace GradeBook.UserInterfaces
 
     public static void ListCommand()
     {
-      //string path = (Directory.Exists(@"C:\")) ? @"C:\" : @"C:\";
-      //string USERNAME = Environment.UserName;
-      //string savedGBPath = @"C:\Users\" + USERNAME + "\\GitHib\\CSharp-GradeBookApplication\\GradeBook\\bin\\Debug\\netcoreapp2.0\\";
                
       //if (File.Exists(savedGBPath))
       {
         List<string> lstPathsWFiles = new List<string>(Directory.GetFiles(@"C:\Users\JClark\Documents\GitHub\CSharp-GradeBookApplication\GradeBook\bin\Debug\netcoreapp2.0"));
-        //List<string> lstPathsWFiles = new List<string>(Directory.GetFiles(@"C:\Users" + USERNAME + "Documents\GitHub\CSharp-GradeBookApplication\GradeBook\bin\Debug\netcoreapp2.0"));
-        //List<string> lstPathsWFiles = new List<string>(savedGBPath);
-
+        
         List<string> lstFiles = new List<string>();
+        List<string> lstFiles2 = new List<string>();
         List<string> lstGradeBooks = new List<string>();
+
+        Console.WriteLine();
+        Console.WriteLine("Here is a list of all the saved Grade books. ");
+        Console.WriteLine();
 
         // trying to see if I can check whether or not if the user has saved any grade books yet 
         //if (lstPathsWFiles.Where(x => x.EndsWith(".gdbk")))
@@ -153,11 +154,21 @@ namespace GradeBook.UserInterfaces
             {
               if (file.EndsWith(".gdbk"))
               {
-                Console.WriteLine(file);
+                lstFiles2 = file.Split(".").ToList();
+                foreach(string file2 in lstFiles2)
+                  {
+                    if(file2 != "gdbk")
+                      Console.WriteLine(file2);
+                  }
+                
               }
+
             }
+
           }
+
         }
+
       }
       //else
       //{
