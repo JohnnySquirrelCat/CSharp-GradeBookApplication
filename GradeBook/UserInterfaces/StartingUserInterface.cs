@@ -3,12 +3,17 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.OleDb;
+using System.Data;
 
 namespace GradeBook.UserInterfaces
 {
   public static class StartingUserInterface
   {
+
+    public static int holder = 5;
+    public static DataTable dtHolder;
+
+
     public static bool Quit = false;
     public static void CommandLoop()
     {
@@ -114,7 +119,7 @@ namespace GradeBook.UserInterfaces
 
       if (!File.Exists(name + ".gdbk"))
       {
-        Console.WriteLine(name + " Gradebook coudl not be found \n");
+        Console.WriteLine(name + " Gradebook could not be found \n");
         return;
       }
       else
@@ -181,17 +186,17 @@ namespace GradeBook.UserInterfaces
       //Console.WriteLine();
       Console.WriteLine("\n GradeBook accepts the following commands: \n");
       //Console.WriteLine();
-      Console.WriteLine(" Create 'Name' 'Type' 'Weighted' - Creates a new gradebook where 'Name' is the name of the gradebook, 'Type' is what type of grading it should use, and 'Weighted' is whether or not grades should be weighted (true or false). \n");
+      Console.WriteLine(" Create 'Name' 'Type' 'Weighted' - Creates a new gradebook where\n 'Name' is the name of the gradebook,\n 'Type' is what type of grading it should use (standard or ranked), and\n 'Weighted' is whether or not grades should be weighted (true or false). \n");
       //Console.WriteLine();
       Console.WriteLine(" Load 'Name' - Loads the gradebook with the provided 'Name'. \n");
       //Console.WriteLine();
-      Console.WriteLine(" Delete 'Name' - Deletes the gradebook with the provided 'Name' \n");
+      Console.WriteLine(" Delete 'Name' - Deletes the gradebook with the provided 'Name'. \n");
       //Console.WriteLine();
-      Console.WriteLine(" List - Displays all of the grade books that are made. \n");
+      Console.WriteLine(" List - Displays all of the grade books that are saved. \n");
       //Console.WriteLine();
       Console.WriteLine(" Help - Displays all accepted commands. \n");
       //Console.WriteLine();
-      Console.WriteLine(" Quit - Exits the application \n");
+      Console.WriteLine(" Quit - Exits the application. \n");
     }
   }
 }

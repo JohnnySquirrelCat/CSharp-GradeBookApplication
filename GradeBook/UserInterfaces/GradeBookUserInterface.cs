@@ -1,11 +1,20 @@
 ﻿using GradeBook.Enums;
 using GradeBook.GradeBooks;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data;
 
 namespace GradeBook.UserInterfaces
 {
   public static class GradeBookUserInterface
   {
+
+    public static int holder = 5;
+    public static DataTable dtHolder;
+    public static List<string> lstNames;
+
     public static BaseGradeBook GradeBook;
     public static bool Quit = false;
     public static void CommandLoop(BaseGradeBook gradeBook)

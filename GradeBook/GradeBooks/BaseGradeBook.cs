@@ -6,13 +6,314 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Data;
+using System.Collections;
+using System.Data.Odbc;
 
 namespace GradeBook.GradeBooks
 {
+
+  //public sealed class OleDbDataReader : System.Data.Common.DbDataReader
+  //{
+  //  public override object this[int ordinal] => throw new NotImplementedException();
+
+  //  public override object this[string name] => throw new NotImplementedException();
+
+  //  public override int Depth => throw new NotImplementedException();
+
+  //  public override int FieldCount => throw new NotImplementedException();
+
+  //  public override bool HasRows => throw new NotImplementedException();
+
+  //  public override bool IsClosed => throw new NotImplementedException();
+
+  //  public override int RecordsAffected => throw new NotImplementedException();
+
+  //  public override bool GetBoolean(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override byte GetByte(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override long GetBytes(int ordinal, long dataOffset, byte[] buffer, int bufferOffset, int length)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override char GetChar(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override long GetChars(int ordinal, long dataOffset, char[] buffer, int bufferOffset, int length)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override string GetDataTypeName(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override DateTime GetDateTime(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override decimal GetDecimal(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override double GetDouble(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override IEnumerator GetEnumerator()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override Type GetFieldType(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override float GetFloat(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override Guid GetGuid(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override short GetInt16(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override int GetInt32(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override long GetInt64(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override string GetName(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override int GetOrdinal(string name)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override string GetString(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override object GetValue(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override int GetValues(object[] values)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override bool IsDBNull(int ordinal)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override bool NextResult()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public override bool Read()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+  //}
+
+
+  //public abstract class DbDataReader : MarshalByRefObject, IDisposable, System.Collections.IEnumerable, System.Data.IDataReader
+  //{
+  //  public object this[int i] => throw new NotImplementedException();
+
+  //  public object this[string name] => throw new NotImplementedException();
+
+  //  public int Depth => throw new NotImplementedException();
+
+  //  public bool IsClosed => throw new NotImplementedException();
+
+  //  public int RecordsAffected => throw new NotImplementedException();
+
+  //  public int FieldCount => throw new NotImplementedException();
+
+  //  public void Close()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public void Dispose()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public bool GetBoolean(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public byte GetByte(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public char GetChar(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public IDataReader GetData(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public string GetDataTypeName(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public DateTime GetDateTime(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public decimal GetDecimal(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public double GetDouble(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public IEnumerator GetEnumerator()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public Type GetFieldType(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public float GetFloat(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public Guid GetGuid(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public short GetInt16(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public int GetInt32(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public long GetInt64(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public string GetName(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public int GetOrdinal(string name)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public DataTable GetSchemaTable()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public string GetString(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public object GetValue(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public int GetValues(object[] values)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public bool IsDBNull(int i)
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public bool NextResult()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+
+  //  public bool Read()
+  //  {
+  //    throw new NotImplementedException();
+  //  }
+  //}
+
+
+
   public abstract class BaseGradeBook
   {
     public string Name { get; set; }
+
     public List<Student> Students { get; set; }
+
     public GradeBookType Type { get; set; }
 
     public bool IsWeighted { get; set; }
@@ -81,7 +382,7 @@ namespace GradeBook.GradeBooks
         Console.WriteLine("{0} : {1} : {2}", student.Name, student.Type, student.Enrollment);
       }
     }
-
+    
     public static BaseGradeBook Load(string name)
     {
       if (!File.Exists(name + ".gdbk"))
@@ -99,7 +400,39 @@ namespace GradeBook.GradeBooks
         }
       }
     }
-        
+
+    public static void ReadMDBGradeBook(string connectionString, string queryString)
+    {      
+      //using (OleDbConnection connection = new OleDbConnection(connectionString))
+      //{
+      //  OleDbCommand command = new OleDbCommand(queryString, connection);
+
+      //  connection.Open();
+      //  OleDbDataReader reader = command.ExecuteReader();
+
+      //  while (reader.Read())
+      //  {
+      //    Console.WriteLine(reader[0].ToString());
+      //  }
+      //  reader.Close();
+      //}
+    }
+
+    public static void LoadMDBGradeBook(string name)
+    {
+      DataTable dtGradeBook = new DataTable();
+      
+      // need a check to see if the named grade book exists
+
+      // do need to return the loaded grade book
+      
+    }
+
+    public void SaveMDBGradeBook()
+    {
+
+    }
+
     public void Save()
     {
       using (var file = new FileStream(Name + ".gdbk", FileMode.Create, FileAccess.Write))
@@ -110,7 +443,7 @@ namespace GradeBook.GradeBooks
           writer.Write(json);
         }
       }
-    }
+    }   
 
     public virtual double GetGPA(char letterGrade, StudentType studentType)
     {
